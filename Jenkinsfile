@@ -1,14 +1,13 @@
 pipeline {
-  agent { label 'linux' }
+  agent {
+    label 'linux'
+  }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   triggers {
     pollSCM('* * * * *')
   }
-//   parameters {
-//     string(name: 'APP_NAME', defaultValue: '', description: 'What is the Heroku app name?')
-//   }
 
   environment {
     HEROKU_API_KEY = credentials('insomn1ac-api-key')
@@ -35,9 +34,7 @@ pipeline {
     }
     stage('Release the image') {
       steps {
-        sh '''
-          heroku container:release web --app=testsupermegagiperhelloworld
-        '''
+        sh 'heroku container:release web --app=testsupermegagiperhelloworld'
       }
     }
   }
