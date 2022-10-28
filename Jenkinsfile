@@ -3,6 +3,9 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
+  triggers {
+    pollSCM('* * * * *')
+  }
   environment {
     HEROKU_API_KEY = credentials('insomn1ac-api-key')
   }
