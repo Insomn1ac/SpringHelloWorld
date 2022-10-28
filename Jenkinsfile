@@ -29,7 +29,7 @@ pipeline {
       steps {
         sh '''
           docker tag insomn1ac/spring-hello-world:latest registry.heroku.com/testsupermegagiperhelloworld/web
-          docker push registry.heroku.com/$APP_NAME/web
+          docker push registry.heroku.com/testsupermegagiperhelloworld/web
         '''
       }
     }
