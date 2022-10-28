@@ -28,7 +28,7 @@ pipeline {
     stage('Push to Heroku registry') {
       steps {
         sh '''
-          docker tag insomn1ac/spring-hello-world:latest registry.heroku.com/${floating-peak-19880}/web
+          docker tag insomn1ac/spring-hello-world:latest registry.heroku.com/testsupermegagiperhelloworld/web
           docker push registry.heroku.com/$APP_NAME/web
         '''
       }
