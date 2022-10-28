@@ -6,6 +6,10 @@ pipeline {
   triggers {
     pollSCM('* * * * *')
   }
+  parameters {
+    string(name: 'APP_NAME', defaultValue: '', description: 'What is the Heroku app name?')
+  }
+
   environment {
     HEROKU_API_KEY = credentials('insomn1ac-api-key')
   }
@@ -24,7 +28,7 @@ pipeline {
     stage('Push to Heroku registry') {
       steps {
         sh '''
-          docker tag insomn1ac/spring-hello-world:latest registry.heroku.com/floating-peak-19880/web
+          docker tag insomn1ac/spring-hello-world:latest registry.heroku.com/$APP_NAME/web
           docker push registry.heroku.com/$APP_NAME/web
         '''
       }
